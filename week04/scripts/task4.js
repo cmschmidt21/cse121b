@@ -54,9 +54,9 @@ document.querySelector("#favorite-foods").appendChild(foods3);
 // Step 6: Repeat Step 4 for each hobby in the hobbies property
 let hobbies1 = document.createElement("li");
 hobbies1.textContent = myself.hobbies[0];
-let hobbies2 = document.hobbies("li");
+let hobbies2 = document.createElement("li");
 hobbies2.textContent = myself.hobbies[1];
-let hobbies3 = document.hobbies("li");
+let hobbies3 = document.createElement("li");
 hobbies3.textContent = myself.hobbies[2];
 // Step 7: Repeat Step 5 using the HTML <ul> element with an ID of hobbies
 document.querySelector("#hobbies").appendChild(hobbies1);
