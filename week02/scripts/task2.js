@@ -18,8 +18,7 @@ const profileImage = 'caitlynphoto.jpg';
 // Step 6: copy your image into the "images" folder
 
 // Step 7: place the value of the picture variable into the HTML file (hint: document.querySelector().setAttribute())
-document.querySelector().setAttribute()
-document.querySelector('img').setAttribute('src', picture)
+document.querySelector('img').setAttribute('src',caitlynphoto.jpg)
 
 
 
