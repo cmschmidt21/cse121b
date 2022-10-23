@@ -3,7 +3,7 @@
 /* IF/ELSE IF */
 
 // Step 1: Declare and initialize a new variable to hold the current date
-const date = newDate();
+const date = new Date();
 // Step 2: Declare another variable to hold the day of the week
 let weekDay = date.getDay();
 // Step 3: Using the variable declared in Step 1, assign the value of the variable declared in Step 2 to the day of the week ( hint: getDay() )
@@ -92,6 +92,7 @@ temple => {
 // Step 4: In the function, using the built-in fetch method, call this absolute URL: 'https://byui-cse.github.io/cse121b-course/week05/temples.json'. Create a variable to hold the response from your fetch. You should have the program wait on this line until it finishes.
 "https://byui-cse.github.io/cse121b-course/week05/temples.json"
 // Step 5: Convert your fetch response into a Javascript object ( hint: .json() ). Store this in the templeList variable you declared earlier (Step 1). Make sure the the execution of the code waits here as well until it finishes.
+
 // Step 6: Finally, call the output function and pass it the list of temples. Execute your getTemples function to make sure it works correctly.
 
 // Step 7: Declare a function named reset that clears all of the <article> elements from the HTML element with an ID of temples
@@ -100,9 +101,51 @@ temple => {
 // - Calls the reset function
 // - Sorts the global temple list by the currently selected value of the HTML element with an ID of sortBy
 // - Calls the output function passing in the sorted list of temples
-
+fetch("https://byui-cse.github.io/cse121b-course/week05/temples.json")
+ .then(response => response.json())
+ .then(temples => {
+ templeList = temples;
+ output(templeList);
+ });
+const reset = () => {
+ document.querySelector("#temples").innerHTML = "";
 // Step 9: Add a change event listener to the HTML element with an ID of sortBy that calls the sortBy function
-
+const sortBy = () => {
+reset();
+let filterlist = document.querySelector("#sortBy").value;
+switch (filterlist) {
+case "templeNameAscending":
+output(templeList.sort(
+(temple1, temple2) => {
+let templeName1 = temple1.templeName.toLowerCase();
+let templeName2 = temple2.templeName.toLowerCase();
+if (templeName1 < templeName2) return -1;
+else if (templeName1 > templeName2) return 1;
+else return 0;
+}));
+break;
+case "templeNameDescending":
+output(
+templeList.sort(
+(temple1, temple2) => {
+let templeName1 = temple1.templeName.toLowerCase();
+let templeName2 = temple2.templeName.toLowerCase();
+if (templeName1 > templeName2) return -1;
+else if (templeName1 < templeName2) return 1;
+else return 0;
+}));
+break;
+default:
+output(
+templeList.sort(
+(temple1, temple2) =>
+temple1.templeName.toLowerCase() > temple2.templeName.toLowerCase() ? 1:
+temple2.templeNametoLowerCase() > temple1.templeName.toLowerCase()? -1:
+0));
+break;
+}
+}
+document.querySelector("#sortBy").addEventListener("change", sortBy);
 /* STRETCH */
 
 // Consider adding a "Filter by" feature that allows users to filter the list of temples
